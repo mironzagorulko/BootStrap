@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>Добавление животного</title>
+</head>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    main {
+        flex: 1;
+    }
+    footer {
+        background-color: #4a90e2;
+        color: white;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+    }
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="site.html"><img src="images/logo.jpg" class="w-25 rounded-3" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="site.html">Главная</a>
+              </li>
+           
+              <li class="nav-item">
+                  <button type="button" class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
+                      Вход
+                  </button>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="owner.html">Личный кабинет</a>
+              </li>
+              <li class="nav-item">
+                <button type="button" class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#registrationModal">
+                  Регистрация
+              </button>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="add_animal.html">Добавить объявление</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="search.html">Поиск по объявлениям</a>
+              </li>
+          </ul>
+      </div>
+    </header>
+    <div class="container mt-5">
+        <h2>Форма добавления нового объявления</h2>
+        <form id="animalForm" novalidate>
+            <!-- Имя пользователя -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Имя пользователя</label>
+                <input type="text" class="form-control" id="name" name="name" required pattern="^[а-яА-ЯёЁ\s-]+$">
+                <div class="text-danger" id="nameError"></div>
+            </div>
+    
+            <!-- Телефон -->
+            <div class="mb-3">
+                <label for="phone" class="form-label">Телефон</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required pattern="^\+?\d+$">
+                <div class="text-danger" id="phoneError"></div>
+            </div>
+    
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div class="text-danger" id="emailError"></div>
+            </div>
+    
+            <!-- Регистрация -->
+            <div class="mb-3">
+                <label for="register" class="form-check-label">Автоматическая регистрация</label>
+                <input type="checkbox" class="form-check-input" id="register" name="register">
+            </div>
+    
+            <!-- Пароль и подтверждение пароля -->
+            <div id="passwordFields" class="d-none">
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" class="form-control" id="password" name="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}$">
+                    <div class="text-danger" id="passwordError"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="password_confirmation" class="form-label">Подтверждение пароля</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                    <div class="text-danger" id="passwordConfirmError"></div>
+                </div>
+            </div>
+    
+            <!-- Фото -->
+            <div class="mb-3">
+                <label for="photo1" class="form-label">Фото 1</label>
+                <input type="file" class="form-control" id="photo1" name="photo1" required accept="image/*">
+                <div class="text-danger" id="photo1Error"></div>
+            </div>
+    
+            <!-- Фото 2 -->
+            <div class="mb-3">
+                <label for="photo2" class="form-label">Фото 2</label>
+                <input type="file" class="form-control" id="photo2" name="photo2" accept="image/*">
+            </div>
+    
+            <!-- Фото 3 -->
+            <div class="mb-3">
+                <label for="photo3" class="form-label">Фото 3</label>
+                <input type="file" class="form-control" id="photo3" name="photo3" accept="image/*">
+            </div>
+    
+            <!-- Клеймо -->
+            <div class="mb-3">
+                <label for="mark" class="form-label">Клеймо (необязательно)</label>
+                <input type="text" class="form-control" id="mark" name="mark">
+            </div>
+    
+            <!-- Описание -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Описание</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
+            </div>
+    
+            <!-- Согласие на обработку персональных данных -->
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="confirm" name="confirm" value="1" required>
+                <label class="form-check-label" for="confirm">Согласие на обработку персональных данных</label>
+                <div class="text-danger" id="confirmError"></div>
+            </div>
+    
+            <button type="submit" class="btn btn-primary w-100">Добавить объявление</button>
+            <br>
+            <br>
+        </form>
+    </div>
+
+      <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="registrationModalLabel">Регистрация</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+              </div>
+              <div class="modal-body">
+                  <form id="registrationForm">
+                      <div class="mb-3">
+                          <label for="name" class="form-label">Имя</label>
+                          <input type="text" class="form-control" id="name" name="name" required>
+                          <div class="text-danger" id="nameError"></div>
+                      </div>
+
+                      <div class="mb-3">
+                          <label for="phone" class="form-label">Телефон</label>
+                          <input type="tel" class="form-control" id="phone" name="phone" required>
+                          <div class="text-danger" id="phoneError"></div>
+                      </div>
+
+                      <div class="mb-3">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="email" name="email" required>
+                          <div class="text-danger" id="emailError"></div>
+                      </div>
+
+                      <div class="mb-3">
+                          <label for="password" class="form-label">Пароль</label>
+                          <input type="password" class="form-control" id="password" name="password" required>
+                          <div class="text-danger" id="passwordError"></div>
+                      </div>
+
+                      <div class="mb-3">
+                          <label for="password_confirmation" class="form-label">Подтверждение пароля</label>
+                          <input type="password" class="form-control" id="password_confirmation"
+                              name="password_confirmation" required>
+                          <div class="text-danger" id="passwordConfirmError"></div>
+                      </div>
+
+                      <div class="mb-3 form-check">
+                          <input type="checkbox" class="form-check-input" id="confirm" name="confirm" value="1">
+                          <label class="form-check-label" for="confirm">Согласие на обработку персональных данных</label>
+                          <div class="text-danger" id="confirmError"></div>
+                      </div>
+
+                      <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
+
+      
+ 
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Вход</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+            <form id="loginForm" novalidate>
+                <div class="mb-3">
+                    <label for="loginInput" class="form-label">
+                        <i class="bi bi-person"></i> Логин
+                    </label>
+                    <input type="text" class="form-control" id="loginInput" placeholder="Введите логин" pattern="^[a-zA-Z0-9]+$" required>
+                  
+                </div>
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">
+                        <i class="bi bi-lock"></i> Пароль
+                    </label>
+                    <input type="password" class="form-control" id="passwordInput" placeholder="Введите пароль" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{7,}$" minlength="7" required>
+                  
+                </div>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Запомнить меня</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Войти</button>
+            </form>
+            <div class="mt-3 text-center">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#registrationModal">Регистрация</a> | <a href="#">Забыли пароль?</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<footer>
+    GET PET BACK © Copyright 2022. Все права защищены.
+</footer>
+
+<script>
+    // Валидация формы
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Проверка формы
+        if (form.checkValidity() === false) {
+            event.stopPropagation();
+        } else {
+            // Здесь можно добавить логику для отправки данных
+            window.location.href = "owner.html";
+        }
+
+        form.classList.add('was-validated');
+    });
+</script>
+
+<script>
+    // Функция для выхода из личного кабинета
+    function logout() {
+        alert('Вы вышли из системы');
+        window.location.href = 'site.html';  // Перенаправление на главную страницу
+    }
+
+    // Пример проверки авторизации
+    const isAuthenticated = true; // Замените на реальную проверку
+
+    if (!isAuthenticated) {
+        // Показываем ошибку доступа, если пользователь не авторизован
+        document.getElementById('error-message').style.display = 'block';
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Показать/скрыть поля для пароля при регистрации
+    document.getElementById('register').addEventListener('change', function () {
+        const passwordFields = document.getElementById('passwordFields');
+        if (this.checked) {
+            passwordFields.classList.remove('d-none');
+        } else {
+            passwordFields.classList.add('d-none');
+        }
+    });
+
+    // Валидация формы
+    document.getElementById('animalForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        let errors = {};
+
+        const name = document.getElementById("name").value.trim();
+        if (!/^[а-яА-ЯёЁ\s-]+$/.test(name)) {
+            errors.name = "Имя должно содержать только кириллицу, пробелы или дефисы.";
+        }
+
+        const phone = document.getElementById("phone").value.trim();
+        if (!/^\+?\d+$/.test(phone)) {
+            errors.phone = "Телефон должен содержать только цифры и знак +.";
+        }
+
+        const email = document.getElementById("email").value.trim();
+        if (!/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+            errors.email = "Некорректный формат email.";
+        }
+
+        const password = document.getElementById("password").value;
+        if (password && (password.length < 7 || !/\d/.test(password) || !/[A-Z]/.test(password) || !/[a-z]/.test(password))) {
+            errors.password = "Пароль должен быть не менее 7 символов, содержать цифру, строчную и заглавную буквы.";
+        }
+
+        const passwordConfirmation = document.getElementById("password_confirmation").value;
+        if (password && password !== passwordConfirmation) {
+            errors.password_confirmation = "Пароли не совпадают.";
+        }
+
+        const confirm = document.getElementById("confirm").checked;
+        if (!confirm) {
+            errors.confirm = "Необходимо подтвердить согласие на обработку персональных данных.";
+        }
+
+        // Вывод ошибок
+        document.getElementById("nameError").textContent = errors.name || "";
+        document.getElementById("phoneError").textContent = errors.phone || "";
+        document.getElementById("emailError").textContent = errors.email || "";
+        document.getElementById("passwordError").textContent = errors.password || "";
+        document.getElementById("passwordConfirmError").textContent = errors.password_confirmation || "";
+        document.getElementById("confirmError").textContent = errors.confirm || "";
+
+        if (Object.keys(errors).length === 0) {
+            alert("Объявление успешно добавлено!");
+            // Здесь может быть логика отправки данных формы
+        }
+    });
+</script>
+
+  </body>
+</html>

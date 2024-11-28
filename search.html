@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="site-1.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>GET PET BACK</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="site.html"><img src="images/logo.jpg" class="w-25 rounded-3" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="site.html">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Вход
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="owner.html">Личный кабинет</a>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#registrationModal">
+                                Регистрация
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="add_animal.html">Добавить объявление</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="search.html">Поиск по объявлениям</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Форма поиска под навигацией -->
+        <div class="container mt-3">
+            <form class="d-flex" id="searchForm">
+                <input class="form-control me-2" type="search" list="pets" id="searchInput" placeholder="Поиск" aria-label="Search">
+                <button class="btn btn-primary" type="submit">Поиск</button>
+                <datalist id="pets">
+                    <option value="Кошка"/>
+                    <option value="Собака"/>
+                    <option value="Корова"/>
+                    <option value="Крокодил"/>
+                    <option value="Сова"/>
+                </datalist>
+            </form>
+        </div>
+
+    </header>
+    
+    <main style="min-height: 70vh; padding-bottom: 0;">
+        <h2 class="text-center text-white bg-primary m-2 p-2 rounded" style="margin-bottom: 0;">Найденные животные</h2>
+        <div class="d-flex flex-row flex-wrap justify-content-center" id="animalCards">
+        
+            <div class="card m-3 animal-card" style="width: 18rem; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <img src="images/кошка.jpg" class="card-img-top" alt="Рисунок кошки" style="border-top-left-radius: 15px; border-top-right-radius: 15px; object-fit: cover; height: 200px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center text-primary">Кошка</h5>
+                    <p class="card-text text-muted" style="font-size: 0.9rem;">Потерялась пушистая кошка. Очень ласковая, серая.</p>
+                    <ul class="list-unstyled flex-grow-1">
+                        <li><strong>id:</strong> 14</li>
+                        <li><strong>Номер чипа:</strong> ca-001-spb</li>
+                        <li><strong>Район:</strong> Василеостровский</li>
+                        <li><strong>Дата:</strong> 24-03-2020</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 mt-auto" style="border-radius: 10px;">Связаться</button>
+                </div>
+            </div>
+
+            <div class="card m-3 animal-card" style="width: 18rem; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <img src="images/коза.jpeg" class="card-img-top" alt="Рисунок козы" style="border-top-left-radius: 15px; border-top-right-radius: 15px; object-fit: cover; height: 200px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center text-primary">Коза</h5>
+                    <p class="card-text text-muted" style="font-size: 0.9rem;">Коза была утеряна рядом с Московским вокзалом. Белая, пуховая.</p>
+                    <ul class="list-unstyled flex-grow-1">
+                        <li><strong>id:</strong> 18</li>
+                        <li><strong>Номер чипа:</strong> go-011-spb</li>
+                        <li><strong>Район:</strong> Центральный</li>
+                        <li><strong>Дата:</strong> 14-03-2022</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 mt-auto" style="border-radius: 10px;">Связаться</button>
+                </div>
+            </div>
+
+            <div class="card m-3 animal-card" style="width: 18rem; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <img src="images/animales-enojados-2.jpg" class="card-img-top" alt="Рисунок льва" style="border-top-left-radius: 15px; border-top-right-radius: 15px; object-fit: cover; height: 200px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center text-primary">Лев</h5>
+                    <p class="card-text text-muted" style="font-size: 0.9rem;">Львенок был найден под деревом, хозяин, отзовись.</p>
+                    <ul class="list-unstyled flex-grow-1">
+                        <li><strong>id:</strong> 17</li>
+                        <li><strong>Номер чипа:</strong> go-012-spb</li>
+                        <li><strong>Район:</strong> Приморский</li>
+                        <li><strong>Дата:</strong> 12-08-2022</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 mt-auto" style="border-radius: 10px;">Связаться</button>
+                </div>
+            </div>
+
+            <div class="card m-3 animal-card" style="width: 18rem; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <img src="images/d0442a8a-18d5-5093-b9db-50acd5c212e7.jpg" class="card-img-top" alt="Рисунок крокодила" style="border-top-left-radius: 15px; border-top-right-radius: 15px; object-fit: cover; height: 200px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center text-primary">Крокодил</h5>
+                    <p class="card-text text-muted" style="font-size: 0.9rem;">Крокодил ищет хозяина, живет рядом с болотом.</p>
+                    <ul class="list-unstyled flex-grow-1">
+                        <li><strong>id:</strong> 15</li>
+                        <li><strong>Номер чипа:</strong> go-141-spb</li>
+                        <li><strong>Район:</strong> Приморский</li>
+                        <li><strong>Дата:</strong> 14-01-2023</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 mt-auto" style="border-radius: 10px;">Связаться</button>
+                </div>
+            </div>
+
+            <div class="card m-3 animal-card" style="width: 18rem; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <img src="images/i.webp" class="card-img-top" alt="Рисунок совы" style="border-top-left-radius: 15px; border-top-right-radius: 15px; object-fit: cover; height: 200px;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center text-primary">Сова</h5>
+                    <p class="card-text text-muted" style="font-size: 0.9rem;">Сова на дереве.</p>
+                    <ul class="list-unstyled flex-grow-1">
+                        <li><strong>id:</strong> 10</li>
+                        <li><strong>Номер чипа:</strong> go-211-spb</li>
+                        <li><strong>Район:</strong> Центральный</li>
+                        <li><strong>Дата:</strong> 11-12-2022</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 mt-auto" style="border-radius: 10px;">Связаться</button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <script>
+        // Функция для фильтрации животных по имени
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const animalCards = document.querySelectorAll('.animal-card');
+            
+            animalCards.forEach(card => {
+                const animalName = card.querySelector('.card-title').textContent.toLowerCase();
+                if (animalName.includes('ко') || animalName.includes('кошку')) {
+                    card.style.display = animalName.includes(searchTerm) ? 'block' : 'none';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
